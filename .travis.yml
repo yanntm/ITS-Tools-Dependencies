@@ -25,6 +25,7 @@ script :
   - ./tag.sh
   - ./build_spot.sh
   - ./build_ltsmin.sh
+  - ./build_z3.sh
   - ls -lah website/
 
 deploy:
