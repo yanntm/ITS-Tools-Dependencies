@@ -4,40 +4,18 @@ sudo: false
 
 language : python
 
-#addons:
-#  apt:
-#    sources: ['ubuntu-toolchain-r-test', 'hvr-ghc', 'george-edison55-precise-backports' ]   # ge-55 : CMake
-#    packages: ['g++-5', 'gcc-5', 'expat', 'libgmp-dev', 'libpopt-dev', 'libboost-dev', 'flex', 'bison', 'ghc-7.10.3', 'ghc-7.10.3-dyn', 'happy-1.19.5', 'libnuma-dev', 'liblzma-dev', 'dejagnu', 'libhwloc-dev', 'cmake', 'cmake-data']
-    
-# add 'asciidoc', 'xmlto', 'doxygen' for doc generation
-    
-before_script:
-  - cd ${TRAVIS_BUILD_DIR}
-  - export GCCVER='5'
-  - export CXX=g++-${GCCVER}
-  - export CC=gcc-${GCCVER}
-  - export AR=gcc-ar-${GCCVER}
-  - export RANLIB=gcc-ranlib-${GCCVER}
-  - export NM=gcc-nm-${GCCVER}
-
-# build spot
 script :
   - ./tag.sh
   - ./build_z3.sh
   - ls -lah website/
-
-#  - ./build_spot.sh
-#  - ./build_ltsmin.sh
-
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   local_dir: website/
-  upload-dir: build/$TRAVIS_BUILD_NUMBER
   on:
     branch: master
   
 after_deploy:
-  - curl -s -X POST -H "Content-Type:application/json" -H "Accept:application/json"   -H "Travis-API-Version:3" -H "Authorization:token $APITOKEN" -d '{"request":{"message":"Triggered by ITS Tools Dependencies build.","branch":"master"}}' https://api.travis-ci.org/repo/lip6%2FITS-LTL/requests
+  - curl -s -X POST -H "Content-Type:application/json" -H "Accept:application/json"   -H "Travis-API-Version:3" -H "Authorization:token $APITOKEN" -d '{"request":{"message":"Triggered by ITS Tools Dependencies build.","branch":"master"}}' https://api.travis-ci.org/repo/lip6%2FITS-Tools/requests
