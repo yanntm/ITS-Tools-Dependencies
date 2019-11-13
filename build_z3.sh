@@ -21,10 +21,10 @@ if [ ! -f z3.zip ] ; then
 #    curl $DLURL > z3.zip
 
 
-	# using z3 4.6, available on GitHub
-	export DLURL=https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-14.04.zip	
+	# using z3 4.8.6, available on GitHub
+	export DLURL=https://github.com/Z3Prover/z3/releases/download/z3-4.8.6/z3-4.8.6-x64-ubuntu-16.04.zip	
 	wget --progress=dot:mega $DLURL
-	mv z3-4.8.5-x64-ubuntu-14.04.zip z3.zip
+	mv z3-4.8.6-x64-ubuntu-16.04.zip z3.zip
 fi
 
 if [ ! -d z3 ] ; then 
